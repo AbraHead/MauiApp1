@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MauiApp1.Model
 {
-    internal class Student:INotifyPropertyChanged
+    public class Student:INotifyPropertyChanged
     {
         private string _name;
         public string Name 

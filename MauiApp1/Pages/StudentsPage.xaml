@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:MauiApp1.Model"
              x:Class="MauiApp1.Pages.StudentsPage"
+             x:Name="testPage"
              Title="StudentsPage">
     <VerticalStackLayout>
         <Label 
@@ -10,9 +11,13 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <Button 
+            x:Name="buttonExample"
             Text="Go to Add Students Page"
             Clicked="Button_Clicked"
             />
+        <Button 
+            Text="{Binding Path=TestStudent.Name, 
+            Source={x:Reference testPage}}"></Button>
         <ListView x:Name="studentsList" RowHeight="60" BackgroundColor="Black" SeparatorColor="Green" ItemSelected="studentsList_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Student">
