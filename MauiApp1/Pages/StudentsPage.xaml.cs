@@ -9,40 +9,40 @@ public partial class StudentsPage : ContentPage
 	{
 		InitializeComponent();
 
-        studentsList.ItemsSource = viewModel.students;
+        //studentsList.ItemsSource = viewModel.students;
 
-		buttonExample.SetBinding(Button.TextProperty, new Binding("Name"));
+		//buttonExample.SetBinding(Button.TextProperty, new Binding("Name"));
 		//buttonExample.BindingContext = tmpStudent;
-		buttonExample.BindingContext = viewModel.TestStudent;
+		//buttonExample.BindingContext = viewModel.TestStudent;
 		//ButtonExample.SetBinding(Button.TextProperty, new Binding("Name"));
 
     }
 
-    private void Button_Clicked(object sender, EventArgs e)
-    {
-		viewModel.GoToAddStudentsPage();
-    }
+  //  private void Button_Clicked(object sender, EventArgs e)
+  //  {
+		//viewModel.GoToAddStudentsCommand.Execute(null);
+  //  }
 
     private void studentsList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
-		viewModel.students[0].Name = "test";
+		viewModel.ChangeStudentNameCommand.Execute(null);
     }
 
-    private void Entry_TextChanged(object sender, TextChangedEventArgs e)
-    {
-		var tmp = sender as Entry;
-		var parent = tmp.Parent as HorizontalStackLayout;
-		if (parent != null)
-		{
-			var label = parent.Children[1] as Label;
-			var student = viewModel.students.Where(x => x.Name == label.Text).FirstOrDefault();
-			if (student != null)
-			{
-				//label.Text = tmp.Text;
-				student.Name = tmp.Text;
-			}
-			//students.Where(x => x.Name == label.Text).FirstOrDefault();
+  //  private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+  //  {
+		//var tmp = sender as Entry;
+		//var parent = tmp.Parent as HorizontalStackLayout;
+		//if (parent != null)
+		//{
+		//	var label = parent.Children[1] as Label;
+		//	var student = viewModel.students.Where(x => x.Name == label.Text).FirstOrDefault();
+		//	if (student != null)
+		//	{
+		//		//label.Text = tmp.Text;
+		//		student.Name = tmp.Text;
+		//	}
+		//	//students.Where(x => x.Name == label.Text).FirstOrDefault();
 
-		}
-    }
+		//}
+  //  }
 }
