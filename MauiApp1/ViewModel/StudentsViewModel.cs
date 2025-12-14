@@ -10,7 +10,7 @@ namespace MauiApp1.ViewModel
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public List<Student> students = new List<Student>();
+        public List<Student> students { get; set; } = new List<Student>();
 
         Student x = new Student() { Name = "Ivan", Surname = "Ivanov" };
 
@@ -23,6 +23,11 @@ namespace MauiApp1.ViewModel
             students.Add(x);
             students.Add(new Student() { Name = "Petr", Surname = "Petrov" });
             //students.Add(tmpStudent);
+        }
+
+        public void GoToAddStudentsPage()
+        {
+            Shell.Current.GoToAsync(nameof(AddStudentsPage));
         }
     }
 }

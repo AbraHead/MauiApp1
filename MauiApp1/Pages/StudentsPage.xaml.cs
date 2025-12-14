@@ -20,7 +20,7 @@ public partial class StudentsPage : ContentPage
 
     private void Button_Clicked(object sender, EventArgs e)
     {
-		Shell.Current.GoToAsync(nameof(AddStudentsPage));
+		viewModel.GoToAddStudentsPage();
     }
 
     private void studentsList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
