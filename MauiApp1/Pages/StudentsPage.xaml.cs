@@ -1,28 +1,19 @@
 using MauiApp1.Model;
+using MauiApp1.ViewModel;
 namespace MauiApp1.Pages;
 
 public partial class StudentsPage : ContentPage
 {
-	List<Student> students;
-
-	Student x = new Student() { Name = "Ivan", Surname = "Ivanov" };
-
-	public Student TestStudent { get => x; set => x = value; }
+	StudentsViewModel viewModel = new StudentsViewModel();
 	public StudentsPage()
 	{
 		InitializeComponent();
-        students = new List<Student>();
-		//students.Add(new Student() { Name = "Ivan", Surname = "Ivanov" });
-		//var tmpStudent = new Student() { Name = "Petr", Surname = "Petrov" };
-		students.Add(x);
-		students.Add(new Student() { Name="Petr", Surname="Petrov"});
-        //students.Add(tmpStudent);
 
-        studentsList.ItemsSource = students;
+        studentsList.ItemsSource = viewModel.students;
 
 		buttonExample.SetBinding(Button.TextProperty, new Binding("Name"));
 		//buttonExample.BindingContext = tmpStudent;
-		buttonExample.BindingContext = x;
+		buttonExample.BindingContext = viewModel.TestStudent;
 		//ButtonExample.SetBinding(Button.TextProperty, new Binding("Name"));
 
     }
@@ -34,7 +25,7 @@ public partial class StudentsPage : ContentPage
 
     private void studentsList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
-		students[0].Name = "test";
+		viewModel.students[0].Name = "test";
     }
 
     private void Entry_TextChanged(object sender, TextChangedEventArgs e)
@@ -44,7 +35,7 @@ public partial class StudentsPage : ContentPage
 		if (parent != null)
 		{
 			var label = parent.Children[1] as Label;
-			var student = students.Where(x => x.Name == label.Text).FirstOrDefault();
+			var student = viewModel.students.Where(x => x.Name == label.Text).FirstOrDefault();
 			if (student != null)
 			{
 				//label.Text = tmp.Text;
