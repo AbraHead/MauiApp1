@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.View.StudentListElement">
+    <!-- <Grid ColumnDefinitions="*, 2*, *" RowDefinitions="2*, *">
+        <Rectangle Grid.Column="1" Grid.Row="0" Background="Red"></Rectangle>
+    </Grid> -->
+    <Frame>
+        <Grid ColumnDefinitions="*,*">
+            <VerticalStackLayout Grid.Column="0">
+                <Label Text="Name"></Label>
+                <Label x:Name="nameLabel" Text="{Binding Name}" TextColor="Black"></Label>
+                <Entry x:Name="nameEntry"  Text="{Binding Name}" IsVisible="False"></Entry>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="1">
+                <Label Text="Surname"></Label>
+                <Label x:Name="surnameLabel" Text="{Binding Surname}" TextColor="Black"></Label>
+                <Entry x:Name="surnameEntry" Text="{Binding Surname}" IsVisible="False"></Entry>
+            </VerticalStackLayout>
+        </Grid>
+    </Frame>
+</ContentView>

@@ -57,22 +57,29 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Essentials" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Pages\StudentsPage.xaml.cs">
+	  <Compile Update="View\StudentListElement.xaml.cs">
+	    <DependentUpon>StudentListElement.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="View\Pages\StudentsPage.xaml.cs">
 	    <DependentUpon>StudentsPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Pages\AddStudentsPage.xaml.cs">
+	  <Compile Update="View\Pages\AddStudentsPage.xaml.cs">
 	    <DependentUpon>AddStudentsPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\StudentsPage.xaml">
+	  <MauiXaml Update="View\StudentListElement.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Pages\StudentsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

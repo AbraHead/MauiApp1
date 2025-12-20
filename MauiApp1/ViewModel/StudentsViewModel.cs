@@ -1,42 +1,58 @@
-﻿using MauiApp1.Model;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using MauiApp1.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 
 namespace MauiApp1.ViewModel
 {
-    internal class StudentsViewModel : INotifyPropertyChanged
+    internal partial class StudentsViewModel : ObservableObject
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public ICommand GoToAddStudentsCommand { get; set; }
-        public ICommand ChangeStudentNameCommand { get; set; }
-        public List<Student> students { get; set; } = new List<Student>();
+        //public ICommand GoToAddStudentsCommand { get; set; }
+        
+        //public ICommand ChangeStudentNameCommand { get; set; }
+        
+        [ObservableProperty]
+        private ObservableCollection<Student> _students = new ObservableCollection<Student>();
 
-        Student x = new Student() { Name = "Ivan", Surname = "Ivanov" };
+        
+        //Student x = new Student() { Name = "Ivan", Surname = "Ivanov" };
 
-        public Student TestStudent { get => x; set => x = value; }
+        [ObservableProperty]
+        private Student _testStudent = new Student() { Name = "Ivan", Surname = "Ivanov" };
         public StudentsViewModel() 
         {
             //students = new List<Student>();
             //students.Add(new Student() { Name = "Ivan", Surname = "Ivanov" });
             //var tmpStudent = new Student() { Name = "Petr", Surname = "Petrov" };
-            GoToAddStudentsCommand = new Command(GoToAddStudentsPage);
-            ChangeStudentNameCommand = new Command(ChangeStudentName);
-            students.Add(x);
-            students.Add(new Student() { Name = "Petr", Surname = "Petrov" });
+            //GoToAddStudentsCommand = new Command(GoToAddStudentsPage);
+            //ChangeStudentNameCommand = new Command(ChangeStudentName);
+            _students.Add(TestStudent);
+            _students.Add(new Student() { Name = "Petr", Surname = "Petrov" });
             //students.Add(tmpStudent);
         }
-        public void GoToAddStudentsPage()
+
+        [RelayCommand]
+        private void GoToAddStudentsPage()
         {
             Shell.Current.GoToAsync(nameof(AddStudentsPage));
+            Students.Add(new Student() { Name = "Petr", Surname = "Ivanov" });
         }
+        //private bool Test()
+        //{
+        //    return false;
+        //}
 
-        public void ChangeStudentName()
+        [RelayCommand]
+        private void ChangeStudentName()
         {
-            students[0].Name = "Test";
+            _students[0].Name = "Test";
         }
     }
 }

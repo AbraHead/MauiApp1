@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:MauiApp1.Model"
              xmlns:viewModel="clr-namespace:MauiApp1.ViewModel"
+             xmlns:view="clr-namespace:MauiApp1.View"
              x:Class="MauiApp1.Pages.StudentsPage"
              Title="StudentsPage">
     <ContentPage.BindingContext>
@@ -16,16 +17,22 @@
             HorizontalOptions="Center" />
         <Button 
             Text="Go to Add Students Page"
-            Command="{Binding GoToAddStudentsCommand}"
+            Command="{Binding GoToAddStudentsPageCommand}"
             />
         <Button 
             Text="{Binding Path=TestStudent.Name}" 
-            Command="{Binding GoToAddStudentsCommand}"></Button>
-        <ListView RowHeight="60" BackgroundColor="Black" SeparatorColor="Green" ItemSelected="studentsList_ItemSelected" ItemsSource="{Binding students}">
+            Command="{Binding GoToAddStudentsPageCommand}"></Button>
+
+
+        <ListView RowHeight="120" BackgroundColor="Black" SeparatorColor="Green" ItemSelected="studentsList_ItemSelected" ItemsSource="{Binding Students}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Student">
                     <!-- <TextCell Text="{Binding Name}" Detail="{Binding Surname}" TextColor="White"></TextCell> -->
                     <ViewCell>
+                        <view:StudentListElement>
+                            
+                        </view:StudentListElement>
+                        <!-- 
                         <HorizontalStackLayout>
                             <Entry Text="{Binding Name}" TextColor="White"></Entry>
                             <Label TextColor="White" FontSize="25">
@@ -37,9 +44,12 @@
                                 </Label.Text>
                             </Label>
                         </HorizontalStackLayout>
+                        -->
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+
     </VerticalStackLayout>
 </ContentPage>

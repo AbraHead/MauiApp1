@@ -1,29 +1,18 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
 namespace MauiApp1.Model
 {
-    public class Student:INotifyPropertyChanged
+    public partial class Student: ObservableObject
     {
+        [ObservableProperty]
         private string _name;
-        public string Name 
-        {
-            get => _name; 
-            set 
-            {
-                if (_name != value)
-                {
-                    _name = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
-                }
-            } 
-        }
-        public string Surname { get; set; }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-
+        [ObservableProperty]
+        public string _surname;
         public override string ToString()
         {
             return $"{this.Name} - {this.Surname}";
